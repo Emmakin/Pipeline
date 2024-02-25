@@ -1,7 +1,6 @@
 import React from "react";
 
 function SignUp() {
-  const thisRef = useRef();
   return (
     <div>
       <div>header</div>
@@ -12,7 +11,7 @@ function SignUp() {
       <form>
         <input placeholder="Name" type="text"></input>
         <input placeholder="Email" type="email"></input>
-        <input placeholder="Phone Number" type="number" ref="thisRef"></input>
+        <input placeholder="Phone Number" type="number"></input>
         <input placeholder="password"></input>
         <input type="checkbox" />
       </form>

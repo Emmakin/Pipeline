@@ -1,12 +1,15 @@
 import React, { useRef } from "react";
 import SignUp from "./pages/SignUp";
 import EntryPage from "./pages/EntryPage";
+import EmailVeriSent from "./pages/EmailVeriSent";
+EmailVeriSent;
 
 function App() {
   return (
-    <div className="wrapper max-w-[475px] mx-auto">
-      <SignUp />
+    <div className="wrapper max-w-[475px] mx-auto bg-paleBlue min-h-screen">
+      {/* <SignUp /> */}
       {/* <EntryPage /> */}
+      <EmailVeriSent />
     </div>
   );
 }

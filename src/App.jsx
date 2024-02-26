@@ -10,8 +10,6 @@ function App() {
     <div className="wrapper max-w-[475px] mx-auto bg-paleBlue min-h-screen">
       {/* <SignUp /> */}
       {/* <EntryPage /> */}
-      {/* <EmailVeriSent /> */}
-      <Login />
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import LeftArrow from "../assets/chevron-left.svg"
 
 function SignUp() {
   return (

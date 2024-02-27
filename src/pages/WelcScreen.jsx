@@ -1,24 +1,19 @@
 import React from 'react'
-import LeftArrow from '../assets/chevron-left.svg';
+import PageNav from '../components/PageNav';
+import HeadText from '../components/HeadText';
+import LabelAndInput from '../components/LabelAndInput';
 
 
 function WelcScreen() {
- const link =  'w-108 h-16'
-
-
   return (
-    <div>
-      <div>
-        <span>Login</span>
-        <img src={LeftArrow} alt="left arrow"/>
-      </div>
+    <div className='p-4'>
+      <PageNav pageTitle={"Sign Up"} />
       <section>
-        <span className='text-2xl font-bold leading-9 tracking-normal text-left'>Welcome</span>
+        <HeadText>Welcome</HeadText>
         <span>Your email has been verified! Now you can Login.</span>
       </section>
       <section>
-      <input className={link} placeholder="Email" type="email"></input>
-      <input placeholder="Password" type="password"></input>
+      <LabelAndInput labelContent={"Name"} inputName={"name"} inputType={"text"} />
       </section>
       <span>Forget Password?</span>
       <button>Register</button>

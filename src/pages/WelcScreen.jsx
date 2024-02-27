@@ -7,10 +7,10 @@ import LabelAndInput from '../components/LabelAndInput';
 function WelcScreen() {
   return (
     <div className='p-4'>
-      <PageNav pageTitle={"Sign Up"} />
+      <PageNav pageTitle={"Login"} />
       <section>
         <HeadText>Welcome</HeadText>
-        <span>Your email has been verified! Now you can Login.</span>
+        <span>Login to see your pipelines.</span>
       </section>
       <section>
       <LabelAndInput labelContent={"Name"} inputName={"name"} inputType={"text"} />

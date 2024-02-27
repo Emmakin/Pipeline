@@ -13,7 +13,7 @@ import WelcScreen from "./pages/WelcScreen";
 function App() {
   return (
     <div className="wrapper max-w-[475px] mx-auto bg-paleBlue min-h-screen">
-      {/* <SignUp /> */}
+      <SignUp />
       {/* <EntryPage /> */}
       {/* <EmailVeriSent /> */}
       {/* <Login /> */}
@@ -21,7 +21,7 @@ function App() {
       {/* <EmailSent /> */}
       {/* <SetPassword /> */}
       {/* <NewPasswordCreated /> */}
-      <WelcScreen />
+      {/* <WelcScreen /> */}
     </div>
   );
 }

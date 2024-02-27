@@ -5,7 +5,9 @@ function SignUp() {
   return (
     <div>
       <div>
-        <img src={LeftArrow} alt="left arrow"/>
+        <div className="w-8 h-8 rounded-full bg-white">
+            <img className="w-4 h-4 top-2 left-2 px-1 py-1.5" src={LeftArrow} alt="left arrow"/>
+        </div>
         <span>Sign Up</span>
       </div>
       <section>

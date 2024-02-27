@@ -7,6 +7,7 @@ import LabelAndInput from "./components/LabelAndInput";
 import EnterEmail from "./pages/passwordRecovery/EnterEmail";
 import EmailSent from "./pages/passwordRecovery/EmailSent";
 import SetPassword from "./pages/passwordRecovery/SetPassword";
+import NewPasswordCreated from "./pages/passwordRecovery/NewPasswordCreated";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
       {/* <Login /> */}
       {/* <EnterEmail /> */}
       {/* <EmailSent /> */}
-      <SetPassword />
+      {/* <SetPassword /> */}
+      <NewPasswordCreated />
     </div>
   );
 }

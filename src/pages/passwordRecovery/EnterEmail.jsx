@@ -1,6 +1,7 @@
 import React from "react";
 import PageNav from "../../components/PageNav";
 import LabelAndInput from "../../components/LabelAndInput";
+import MainButton from "../../components/MainButton";
 
 const EnterEmail = () => {
   return (
@@ -12,6 +13,8 @@ const EnterEmail = () => {
       </h1>
 
       <LabelAndInput inputName="email" inputType="email" labelContent="Email" />
+
+      <MainButton addStyles="mt-20">Continue</MainButton>
     </div>
   );
 };

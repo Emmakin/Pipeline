@@ -17,6 +17,7 @@ export default {
         textBlue: "rgba(1, 62, 141, 1)",
         paleBlue: "rgba(245, 247, 255, 1)",
         textGray: "rgba(143, 148, 163, 1)",
+        texttBlack: "rgba(36, 15, 81, 1)",
       },
     },
   },

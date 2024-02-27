@@ -6,6 +6,7 @@ import EmailVeriSent from "./pages/EmailVeriSent";
 import LabelAndInput from "./components/LabelAndInput";
 import EnterEmail from "./pages/passwordRecovery/EnterEmail";
 import EmailSent from "./pages/passwordRecovery/EmailSent";
+import SetPassword from "./pages/passwordRecovery/SetPassword";
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
       {/* <EmailVeriSent /> */}
       {/* <Login /> */}
       {/* <EnterEmail /> */}
-      <EmailSent />
+      {/* <EmailSent /> */}
+      <SetPassword />
     </div>
   );
 }

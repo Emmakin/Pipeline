@@ -1,5 +1,6 @@
 import React from "react";
 import mailImg from "../assets/mail.svg";
+import MainButton from "../components/MainButton";
 
 const EmailVeriSent = () => {
   return (
@@ -9,9 +10,7 @@ const EmailVeriSent = () => {
         We have sent an email verification link to your email
       </p>
       <p className="text-[14px]">Click the link to verify your email address</p>
-      <button className="bg-mainBlue w-full p-4 rounded-full text-xl text-white mt-10">
-        Open Email
-      </button>
+      <MainButton addStyles={"mt-10"}>Continue</MainButton>
     </div>
   );
 };

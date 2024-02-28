@@ -19,6 +19,7 @@ const SetPassword = () => {
             inputName={"setPassword"}
             inputType={"password"}
           />
+
           <LabelAndInput
             labelContent={"Retype Password"}
             inputName={"retypePassword"}

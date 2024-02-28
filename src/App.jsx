@@ -8,6 +8,7 @@ import EnterEmail from "./pages/passwordRecovery/EnterEmail";
 import EmailSent from "./pages/passwordRecovery/EmailSent";
 import SetPassword from "./pages/passwordRecovery/SetPassword";
 import NewPasswordCreated from "./pages/passwordRecovery/NewPasswordCreated";
+import Pipe from "./pages/homePage/Pipe.jsx";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
       {/* <EnterEmail /> */}
       {/* <EmailSent /> */}
       {/* <SetPassword /> */}
-      <NewPasswordCreated />
+      {/* <NewPasswordCreated /> */}
+      <Pipe />
     </div>
   );
 }

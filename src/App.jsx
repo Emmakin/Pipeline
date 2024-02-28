@@ -22,7 +22,7 @@ function App() {
       {/* <EmailSent /> */}
       {/* <SetPassword /> */}
       {/* <NewPasswordCreated /> */}
-      <Pipe />
+      {/* <Pipe /> */}
     </div>
   );
 }

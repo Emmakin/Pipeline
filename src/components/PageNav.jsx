@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import left from "../assets/back.svg";
 
-const PageNav = ({ pageTitle }) => {
+const PageNav = ({pageTitle}) => {
   return (
     <div className="flex justify-between items-center mb-10 relative">
       <img src={left} alt="back" className="absolute" />

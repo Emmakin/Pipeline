@@ -8,12 +8,13 @@ import EnterEmail from "./pages/passwordRecovery/EnterEmail";
 import EmailSent from "./pages/passwordRecovery/EmailSent";
 import SetPassword from "./pages/passwordRecovery/SetPassword";
 import NewPasswordCreated from "./pages/passwordRecovery/NewPasswordCreated";
+import WelcScreen from "./pages/WelcScreen";
 import Pipe from "./pages/homePage/Pipe.jsx";
 
 function App() {
   return (
     <div className="wrapper max-w-[475px] mx-auto bg-paleBlue min-h-screen">
-      {/* <SignUp /> */}
+      <SignUp />
       {/* <EntryPage /> */}
       {/* <EmailVeriSent /> */}
       {/* <Login /> */}

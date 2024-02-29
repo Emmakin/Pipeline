@@ -185,7 +185,7 @@ function SignUp() {
         <LabelAndInput
           labelContent={"Phone Number"}
           inputName={"phoneNumber"}
-          inputType={"number"}
+          inputType={"tel"}
           isError={phoneNum.isError}
           errorMsg={phoneNum.errorMsg}
           value={phoneNum.val}

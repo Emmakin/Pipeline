@@ -10,6 +10,7 @@ import SetPassword from "./pages/passwordRecovery/SetPassword";
 import NewPasswordCreated from "./pages/passwordRecovery/NewPasswordCreated";
 import WelcScreen from "./pages/WelcScreen";
 import Pipe from "./pages/homePage/Pipe.jsx";
+import Test from "./pages/Test.jsx";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       {/* <SetPassword /> */}
       {/* <NewPasswordCreated /> */}
       {/* <Pipe /> */}
+      {/* <Test /> */}
     </div>
   );
 }

@@ -21,24 +21,33 @@ function SignUp() {
     isError: false,
     errorMsg: "",
   });
-  const [touhed, setTouched] = useState(false);
+  const [touched, setTouched] = useState(false);
 
-  const validatedRef = useRef(false);
-
-  const errorBorder = "border-[1px] border-red-400";
+  const validatedNameRef = useRef(false);
+  const validatedEmailRef = useRef(false);
+  const validatedPhoneRef = useRef(false);
+  const validatedPassRef = useRef(false);
+  const checkedRef = useRef();
 
   const validateName = () => {
-    if (!username || username.trim() === "") {
+    if (!username.val) {
       setUsername({
         ...username,
         isError: true,
         errorMsg: "Please input your name",
       });
+      return;
     }
+    setUsername({
+      ...username,
+      isError: false,
+      errorMsg: "",
+    });
+    validatedNameRef.current = true;
   };
 
   const validateEmail = () => {
-    if (!email || email.trim() === "") {
+    if (!email.val) {
       setEmail({
         ...email,
         isError: true,
@@ -46,37 +55,52 @@ function SignUp() {
       });
       return;
     }
-    const reg = "/^[w-.]+@([w-]+.)+[w-]{2,4}$/";
-    if (!reg.test(email)) {
+    const reg = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
+    if (!reg.test(email.val)) {
       setEmail({
         ...email,
         isError: true,
         errorMsg: "Invalid email",
       });
+      return;
     }
+    setEmail({
+      ...email,
+      isError: false,
+      errorMsg: "",
+    });
+    validatedEmailRef.current = true;
   };
 
   const validatePhone = () => {
-    if (!phoneNum || phoneNum.trim() === "") {
+    if (!phoneNum.val) {
       setPhoneNum({
-        ...password,
+        ...phoneNum,
         isError: true,
         errorMsg: "Please input your phone number",
       });
       return;
     }
-    const reg = "/^(?:ds?){11}$/";
-    if (!reg.test(phoneNum)) {
+    const reg = /^\d{11}$/;
+    if (!reg.test(phoneNum.val)) {
       setPhoneNum({
         ...phoneNum,
         isError: true,
         errorMsg: "Invalid phone number",
       });
+      console.log("Invalid phone num", reg.test(phoneNum.val));
+      return;
     }
+    setPhoneNum({
+      ...phoneNum,
+      isError: false,
+      errorMsg: "",
+    });
+    validatedPhoneRef.current = true;
   };
 
   const validatePassword = () => {
-    if (!password || password.trim() === "") {
+    if (!password.val) {
       setPassword({
         ...password,
         isError: true,
@@ -84,13 +108,38 @@ function SignUp() {
       });
       return;
     }
-    if (phoneNum.length() < 6) {
-      setPhoneNum({
-        ...phoneNum,
+    if (password.val.length < 6) {
+      setPassword({
+        ...password,
         isError: true,
         errorMsg: "Password should be more than 6 characters",
       });
+      return;
     }
+    setPassword({
+      ...password,
+      isError: false,
+      errorMsg: "",
+    });
+    validatedPassRef.current = true;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setTouched(true);
+    validateName();
+    validateEmail();
+    validatePhone();
+    validatePassword();
+    const valid =
+      validatedNameRef.current &&
+      validatedEmailRef.current &&
+      validatedPhoneRef.current &&
+      validatedPassRef.current &&
+      checkedRef.current.checked;
+    if (valid) {
+      console.log("Valid");
+    } else console.log("Not valid");
   };
 
   return (
@@ -100,7 +149,7 @@ function SignUp() {
         <HeadText addStyles={"mb-3"}>Welcome to Pipeline</HeadText>
         <p className="mb-5">Complete the sign up to get started</p>
       </section>
-      <form noValidate>
+      <form noValidate onSubmit={handleSubmit}>
         <LabelAndInput
           labelContent={"Name"}
           inputName={"name"}
@@ -109,38 +158,68 @@ function SignUp() {
           isError={username.isError}
           errorMsg={username.errorMsg}
           onChange={(event) => {
-            setUsername(event.target.value);
+            setUsername({ ...username, val: event.target.value });
+          }}
+          onBlur={() => {
+            if (touched) {
+              validateName();
+            }
           }}
         />
         <LabelAndInput
           labelContent={"Email"}
           inputName={"email"}
           inputType={"email"}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
           value={email.val}
+          isError={email.isError}
+          errorMsg={email.errorMsg}
+          onChange={(event) => {
+            setEmail({ ...email, val: event.target.value });
+          }}
+          onBlur={() => {
+            if (touched) {
+              validateEmail();
+            }
+          }}
         />
         <LabelAndInput
           labelContent={"Phone Number"}
-          inputName={"phone number"}
-          inputType={"tel"}
-          onChange={(event) => {
-            setPhoneNum(event.target.value);
-          }}
+          inputName={"phoneNumber"}
+          inputType={"number"}
+          isError={phoneNum.isError}
+          errorMsg={phoneNum.errorMsg}
           value={phoneNum.val}
+          onChange={(event) => {
+            setPhoneNum({ ...phoneNum, val: event.target.value });
+          }}
+          onBlur={() => {
+            if (touched) {
+              validatePhone();
+            }
+          }}
         />
         <LabelAndInput
           labelContent={"Password"}
           inputName={"password"}
           inputType={"password"}
+          isError={password.isError}
+          errorMsg={password.errorMsg}
           onChange={(event) => {
-            setPassword(event.target.value);
+            setPassword({ ...password, val: event.target.value });
           }}
           value={password.val}
+          onBlur={() => {
+            if (touched) {
+              validatePassword();
+            }
+          }}
         />
         <span>
-          <input type="checkbox" className="mr-2 outline-none" />
+          <input
+            type="checkbox"
+            className="mr-2 outline-none"
+            ref={checkedRef}
+          />
           <span>
             By signing up, you agree to the{" "}
             <a href="#" className="text-mainBlue">

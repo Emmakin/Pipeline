@@ -30,6 +30,6 @@ async function regiter() {
   });
 }
 
-regiter().then((value) => login());
+regiter().then(() => login());
 
 

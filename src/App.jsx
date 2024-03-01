@@ -11,11 +11,20 @@ import NewPasswordCreated from "./pages/passwordRecovery/NewPasswordCreated";
 import WelcScreen from "./pages/WelcScreen";
 import Pipe from "./pages/homePage/Pipe.jsx";
 import Test from "./pages/Test.jsx";
+import MoneyBar from "./pages/homePage/Pipe.jsx";
 
 function App() {
+  const [currentValue, setCurrentValue] = React.useState(50);
+  const maxValue = 100;
+
+  const handleInputChange = (event) => {
+    setCurrentValue(parseInt(event.target.value, 10));
+  };
+
+
   return (
     <div className="wrapper max-w-[475px] mx-auto bg-paleBlue min-h-screen">
-      <SignUp />
+      {/* <SignUp /> */}
       {/* <EntryPage /> */}
       {/* <EmailVeriSent /> */}
       {/* <Login /> */}

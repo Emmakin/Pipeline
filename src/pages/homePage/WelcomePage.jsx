@@ -5,18 +5,18 @@ import PipelineUnit from './Pipe.jsx'
 const WelcomePage = () => {
   return (
     <div>
-      <span>
-        <HeadAmount 
+      <span className='font-inter text-2xl font-medium leading-9 tracking-tight text-left
+' >     <HeadAmount 
           title="Welcome Chris"
           amount="XXXX.XX"
         />
       </span>
-      <PipelineUnit 
+        <PipelineUnit 
         pipeName='Personal'
         amount="XXXX.XX"
-      />
+        />
       <section>
-        
+
       </section>
     </div>
   )

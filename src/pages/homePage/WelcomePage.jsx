@@ -15,6 +15,9 @@ const WelcomePage = () => {
         pipeName='Personal'
         amount="XXXX.XX"
       />
+      <section>
+        
+      </section>
     </div>
   )
 }

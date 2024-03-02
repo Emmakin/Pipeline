@@ -12,6 +12,7 @@ import WelcScreen from "./pages/WelcScreen";
 import Pipe from "./pages/homePage/Pipe.jsx";
 import Test from "./pages/Test.jsx";
 import MoneyBar from "./pages/homePage/Pipe.jsx";
+import WelcomePage from "./pages/homePage/WelcomePage.jsx";
 
 function App() {
   const [currentValue, setCurrentValue] = React.useState(50);
@@ -34,6 +35,7 @@ function App() {
       {/* <NewPasswordCreated /> */}
       {/* <Pipe /> */}
       {/* <Test /> */}
+      <WelcomePage />
     </div>
   );
 }

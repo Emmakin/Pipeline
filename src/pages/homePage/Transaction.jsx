@@ -1,8 +1,14 @@
 import React from 'react'
 
+
 const Transaction = () => {
   return (
-    <div>Transaction</div>
+    <div>
+        <section>
+        <label>Transaction</label>
+        <span></span>
+        </section>
+    </div>
   )
 }
 

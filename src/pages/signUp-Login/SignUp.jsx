@@ -185,100 +185,102 @@ function SignUp() {
 }
 
   return (
-    <div className="p-4">
-      <PageNav pageTitle={"Sign Up"} />
-      <section>
-        <HeadText addStyles={"mb-3"}>Welcome to Pipeline</HeadText>
-        <p className="mb-5">Complete the sign up to get started</p>
-      </section>
+    <div>
       {loading && <Loading />}
-      <form noValidate onSubmit={handleSubmit}>
-        <LabelAndInput
-          labelContent={"Name"}
-          inputName={"name"}
-          inputType={"text"}
-          value={username.val}
-          isError={username.isError}
-          errorMsg={username.errorMsg}
-          onChange={(event) => {
-            setUsername({ ...username, val: event.target.value });
-          }}
-          onBlur={() => {
-            if (touched) {
-              validateName();
-            }
-          }}
-        />
-        <LabelAndInput
-          labelContent={"Email"}
-          inputName={"email"}
-          inputType={"email"}
-          value={email.val}
-          isError={email.isError}
-          errorMsg={email.errorMsg}
-          onChange={(event) => {
-            setEmail({ ...email, val: event.target.value });
-          }}
-          onBlur={() => {
-            if (touched) {
-              validateEmail();
-            }
-          }}
-        />
-        <LabelAndInput
-          labelContent={"Phone Number"}
-          inputName={"phoneNumber"}
-          inputType={"tel"}
-          isError={phoneNum.isError}
-          errorMsg={phoneNum.errorMsg}
-          value={phoneNum.val}
-          onChange={(event) => {
-            setPhoneNum({ ...phoneNum, val: event.target.value });
-          }}
-          onBlur={() => {
-            if (touched) {
-              validatePhone();
-            }
-          }}
-        />
-        <LabelAndInput
-          labelContent={"Password"}
-          inputName={"password"}
-          inputType={"password"}
-          isError={password.isError}
-          errorMsg={password.errorMsg}
-          onChange={(event) => {
-            setPassword({ ...password, val: event.target.value });
-          }}
-          value={password.val}
-          onBlur={() => {
-            if (touched) {
-              validatePassword();
-            }
-          }}
-        />
-        <span>
-          <input
-            type="checkbox"
-            className="mr-2 outline-none"
-            ref={checkedRef}
+      <div className="p-4">
+        <PageNav pageTitle={"Sign Up"} />
+        <section>
+          <HeadText addStyles={"mb-3"}>Welcome to Pipeline</HeadText>
+          <p className="mb-5">Complete the sign up to get started</p>
+        </section>
+        <form noValidate onSubmit={handleSubmit}>
+          <LabelAndInput
+            labelContent={"Name"}
+            inputName={"name"}
+            inputType={"text"}
+            value={username.val}
+            isError={username.isError}
+            errorMsg={username.errorMsg}
+            onChange={(event) => {
+              setUsername({ ...username, val: event.target.value });
+            }}
+            onBlur={() => {
+              if (touched) {
+                validateName();
+              }
+            }}
+          />
+          <LabelAndInput
+            labelContent={"Email"}
+            inputName={"email"}
+            inputType={"email"}
+            value={email.val}
+            isError={email.isError}
+            errorMsg={email.errorMsg}
+            onChange={(event) => {
+              setEmail({ ...email, val: event.target.value });
+            }}
+            onBlur={() => {
+              if (touched) {
+                validateEmail();
+              }
+            }}
+          />
+          <LabelAndInput
+            labelContent={"Phone Number"}
+            inputName={"phoneNumber"}
+            inputType={"tel"}
+            isError={phoneNum.isError}
+            errorMsg={phoneNum.errorMsg}
+            value={phoneNum.val}
+            onChange={(event) => {
+              setPhoneNum({ ...phoneNum, val: event.target.value });
+            }}
+            onBlur={() => {
+              if (touched) {
+                validatePhone();
+              }
+            }}
+          />
+          <LabelAndInput
+            labelContent={"Password"}
+            inputName={"password"}
+            inputType={"password"}
+            isError={password.isError}
+            errorMsg={password.errorMsg}
+            onChange={(event) => {
+              setPassword({ ...password, val: event.target.value });
+            }}
+            value={password.val}
+            onBlur={() => {
+              if (touched) {
+                validatePassword();
+              }
+            }}
           />
           <span>
-            By signing up, you agree to the{" "}
-            <a href="#" className="text-mainBlue">
-              Terms of Service and Privacy Policy
-            </a>
+            <input
+              type="checkbox"
+              className="mr-2 outline-none"
+              ref={checkedRef}
+            />
+            <span>
+              By signing up, you agree to the{" "}
+              <a href="#" className="text-mainBlue">
+                Terms of Service and Privacy Policy
+              </a>
+            </span>
+            <MainButton
+              addStyles={"mt-10"}
+              onClick={() => {
+                setTouched(true);
+              }}
+            >
+              Sign Up
+            </MainButton>
           </span>
-          <MainButton
-            addStyles={"mt-10"}
-            onClick={() => {
-              setTouched(true);
-            }}
-          >
-            Sign Up
-          </MainButton>
-        </span>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

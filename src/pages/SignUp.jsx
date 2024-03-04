@@ -29,6 +29,8 @@ function SignUp() {
   const validatedPassRef = useRef(false);
   const checkedRef = useRef();
 
+  const url = "https://pipeline-mnbv.onrender.com";
+
   const validateName = () => {
     if (!username.val) {
       setUsername({
@@ -138,9 +140,35 @@ function SignUp() {
       validatedPassRef.current &&
       checkedRef.current.checked;
     if (valid) {
-      console.log("Valid");
+      register()
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error))
     } else console.log("Not valid");
   };
+
+  const post = async (path, body) => {
+      let res = await fetch(`${url}/${path}`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }).catch((error) => {
+        return "Error tih occur";
+      })
+      return res
+  };
+  
+  const register = async () => {
+    const res = await post("auth/register", {
+      full_name: username.val,
+      email: email.val,
+      phone_number: "+234" + phoneNum.val.substring(1),
+      password: password.val,
+      image: "",
+    });
+  return res
+}
 
   return (
     <div className="p-4">

@@ -3,10 +3,10 @@ import MainButton from "../components/MainButton";
 import HeadText from "../components/HeadText";
 
 const test = () => {
-  const [val, setVal] = useState();
+  const [val, setVal] = useState("Okay");
   let url = "https://pipeline-mnbv.onrender.com";
 
-  async function post(path, body) {
+  const post = async (path, body) => {
     let res = await fetch(`${url}/${path}`, {
       method: "post",
       headers: {
@@ -14,9 +14,10 @@ const test = () => {
       },
       body: JSON.stringify(body),
     });
-    setVal(await res.json());
-    console.log(res.status, await res.json());
-  }
+
+    let data = await res.json();
+    setVal(data.user.full_name);
+  };
 
   let email = "prmpsmart@mailinator.com";
   let password = "prmpsmart";
@@ -38,7 +39,7 @@ const test = () => {
     });
   }
 
-  // regiter().then(() => login());
+  
 
   return (
     <div>

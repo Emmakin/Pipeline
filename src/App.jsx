@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import MyRoutes from "./navigation/MyRoutes.jsx";
 import Loading from "./components/Loading.jsx";
+import WelcomePage from "./pages/homePage/WelcomePage.jsx";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
       {/* <NewPasswordCreated /> */}
       {/* <Pipe /> */}
       {/* <Test /> */}
-      <MyRoutes />
+      {/* <MyRoutes /> */}
       {/* <Loading /> */}
+      <WelcomePage />
     </div>
   );
 }

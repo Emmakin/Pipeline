@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import MyRoutes from "./navigation/MyRoutes.jsx";
+import Loading from "./components/Loading.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       {/* <Pipe /> */}
       {/* <Test /> */}
       <MyRoutes />
+      {/* <Loading /> */}
     </div>
   );
 }

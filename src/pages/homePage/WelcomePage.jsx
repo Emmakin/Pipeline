@@ -1,6 +1,6 @@
 import React from 'react'
 import HeadAmount from '../../components/HeadAmount.jsx'
-import PipelineUnit from './Pipe.jsx'
+import PipelineUnit from '../../components/Pipe.jsx'
 
 const WelcomePage = () => {
   return (

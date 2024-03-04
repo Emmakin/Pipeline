@@ -1,17 +1,20 @@
 import React, { useState, useRef } from "react";
-import HeadText from "../components/HeadText";
-import LabelAndInput from "../components/LabelAndInput";
-import MainButton from "../components/MainButton";
-import PageNav from "../components/PageNav";
+import HeadText from "../../components/HeadText";
+import LabelAndInput from "../../components/LabelAndInput";
+import MainButton from "../../components/MainButton";
+import PageNav from "../../components/PageNav";
+import useSessionStorage from "../../modules/useSS";
+import { useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading";
 
 function SignUp() {
-  const [username, setUsername] = useState({
+  const [username, setUsername] = useSessionStorage('username', {
     val: "",
     isError: false,
     errorMsg: "",
   });
-  const [email, setEmail] = useState({ val: "", isError: false, errorMsg: "" });
-  const [phoneNum, setPhoneNum] = useState({
+  const [email, setEmail] = useSessionStorage("email", { val: "", isError: false, errorMsg: "" });
+  const [phoneNum, setPhoneNum] = useSessionStorage("phone", {
     val: "",
     isError: false,
     errorMsg: "",
@@ -22,7 +25,9 @@ function SignUp() {
     errorMsg: "",
   });
   const [touched, setTouched] = useState(false);
+  const [loading, setLoading] = useState(false)
 
+  const navigate = useNavigate();
   const validatedNameRef = useRef(false);
   const validatedEmailRef = useRef(false);
   const validatedPhoneRef = useRef(false);
@@ -141,12 +146,21 @@ function SignUp() {
       checkedRef.current.checked;
     if (valid) {
       register()
-      .then((res) => console.log(res))
-      .catch((error) => console.log(error))
+      .then((res) => {
+        if(res.ok || res.status === 409) {
+          navigate('/home/welcome')
+        }
+        setLoading(false)
+        console.log(res)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
     } else console.log("Not valid");
   };
 
   const post = async (path, body) => {
+      setLoading(true)
       let res = await fetch(`${url}/${path}`, {
         method: "post",
         headers: {
@@ -154,7 +168,7 @@ function SignUp() {
         },
         body: JSON.stringify(body),
       }).catch((error) => {
-        return "Error tih occur";
+        navigate("/signup/error")
       })
       return res
   };
@@ -177,6 +191,7 @@ function SignUp() {
         <HeadText addStyles={"mb-3"}>Welcome to Pipeline</HeadText>
         <p className="mb-5">Complete the sign up to get started</p>
       </section>
+      {loading && <Loading />}
       <form noValidate onSubmit={handleSubmit}>
         <LabelAndInput
           labelContent={"Name"}

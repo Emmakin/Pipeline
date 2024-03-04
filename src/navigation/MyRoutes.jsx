@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SignUp from '../pages/SignUp.jsx';
-import Error from '../pages/Error.jsx';
+import SignUp from '../pages/signUp-Login/SignUp.jsx'
+import Error from '../pages/signUp-Login/Error.jsx';
 // import EntryPage from "./pages/EntryPage";
 // import Login from "./pages/Login";
 // import EmailVeriSent from "./pages/EmailVeriSent";
@@ -13,6 +13,7 @@ import Error from '../pages/Error.jsx';
 // import WelcScreen from "./pages/WelcScreen";
 // import Pipe from "./pages/homePage/Pipe.jsx";
 // import Test from "./pages/Test.jsx";
+import  WelcomePage from "../pages/homePage/WelcomePage.jsx"
 
 
 const MyRoutes = () => {
@@ -20,7 +21,8 @@ const MyRoutes = () => {
     <Router>
         <Routes>
             <Route path='signup' element={<SignUp />}></Route>
-            <Route path='error' element={<Error />}></Route>
+            <Route path='signup/error' element={<Error />}></Route>
+            <Route path='home/welcome' element={<WelcomePage />}></Route>
         </Routes>
     </Router>
   )

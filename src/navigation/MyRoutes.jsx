@@ -14,12 +14,14 @@ import Error from '../pages/signUp-Login/Error.jsx';
 // import Pipe from "./pages/homePage/Pipe.jsx";
 // import Test from "./pages/Test.jsx";
 import  WelcomePage from "../pages/homePage/WelcomePage.jsx"
+import EntryPage from "../pages/signUp-Login/EntryPage.jsx"
 
 
 const MyRoutes = () => {
   return (
     <Router>
         <Routes>
+          <Route path='/' element={<EntryPage />}></Route>
             <Route path='signup' element={<SignUp />}></Route>
             <Route path='signup/error' element={<Error />}></Route>
             <Route path='home/welcome' element={<WelcomePage />}></Route>

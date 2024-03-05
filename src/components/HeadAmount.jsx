@@ -6,7 +6,7 @@ const HeadAmount = ({title,amount}) => {
     <div className='flex flex-col '>
         <span >{title}</span>
         <div className='flex flex-row'>
-          <span>{amount}</span>
+          <span className='text-base font-normal leading-5 text-left'>{amount}</span>
           <img src={Vector} alt='view'/>
         </div>
     </div>

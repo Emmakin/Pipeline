@@ -22,7 +22,7 @@ const WelcomePage = () => {
         amount="XXXX.XX"
         />
       </section>
-      <section>
+      <section className='mt-8 bg-white rounded-2xl pl-8 pr-8'>
         <Transaction />
       </section>
     </div>

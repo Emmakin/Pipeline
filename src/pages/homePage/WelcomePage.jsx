@@ -1,6 +1,7 @@
 import React from 'react'
 import HeadAmount from '../../components/HeadAmount.jsx'
 import PipelineUnit from '../../components/Pipe.jsx'
+import Transaction from '../../components/Transaction.jsx'
 
 const WelcomePage = () => {
   return (
@@ -20,6 +21,9 @@ const WelcomePage = () => {
         pipeName='Personal'
         amount="XXXX.XX"
         />
+      </section>
+      <section>
+        <Transaction />
       </section>
     </div>
   )

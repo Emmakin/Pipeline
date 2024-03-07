@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const usePost = () => {
+const useRequest = () => {
   const [loading, setLoading] = useState(false);
   const url = "https://pipeline-mnbv.onrender.com";
   const navigate = useNavigate();
 
   const sendRequest = async (path, method, body) => {
-    console.log("Okay")
     setLoading(true);
     let res = await fetch(`${url}/${path}`, {
       method: method,
@@ -17,15 +16,14 @@ const usePost = () => {
       body: JSON.stringify(body),
     }).catch((error) => {
       setLoading(false)
-      navigate("/signup/error");
-      console.log(error)
-      return res
+      navigate("/error");
+      return 
     });
-    console.log(res)
+    setLoading(false)
     return res;
   };
 
-  return [loading, setLoading, sendRequest];
+  return {loading, setLoading, sendRequest};
 };
 
-export default usePost;
+export default useRequest;

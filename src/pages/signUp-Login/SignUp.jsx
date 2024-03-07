@@ -12,7 +12,7 @@ import {
   validatePassword,
   validatePhone,
 } from "../../modules/validateForm";
-import usePost from "../../modules/usePost";
+import usePost from "../../modules/useRequest";
 // import post from "../../modules/post.jsx";
 
 const  SignUp = () => {
@@ -38,7 +38,7 @@ const  SignUp = () => {
   });
   const [touched, setTouched] = useState(false);
 
-  const [loading, sendRequest, setLoading] = usePost()
+  const {loading, sendRequest, setLoading} = usePost()
 
   const navigate = useNavigate();
   const validatedNameRef = useRef(false);
@@ -65,8 +65,8 @@ const  SignUp = () => {
     if (valid) {
       register()
         .then((res) => {
-          if (res.ok || res.status === 409) {
-            navigate("/home/welcome");
+          if (!res.ok) {
+            throw new Error("Error")
           }
           setLoading(false);
           console.log(res);
@@ -76,21 +76,6 @@ const  SignUp = () => {
         });
     } else console.log("Not valid");
   };
-
-  // const post = async (path, body) => {
-  //   setLoading(true);
-  //   let res = await fetch(`${url}/${path}`, {
-  //     method: "post",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(body),
-  //   }).catch((error) => {
-  //     navigate("/signup/error");
-  //     return;
-  //   });
-  //   return res;
-  // };
 
   const register = async () => {
     const res = await sendRequest(

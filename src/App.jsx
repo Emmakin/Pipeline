@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import MyRoutes from "./navigation/MyRoutes.jsx";
 import Loading from "./components/Loading.jsx";
 import Login from "./pages/signUp-Login/Login.jsx";
-import LabelAndInput, { LabelAndInputAndLogo } from "./components/LabelAndInput.jsx";
 
 import WelcomePage from "./pages/homePage/WelcomePage.jsx";
 
@@ -19,7 +18,7 @@ function App() {
       {/* <NewPasswordCreated /> */}
       {/* <Pipe /> */}
       {/* <Test /> */}
-      {/* <MyRoutes /> */}
+      <MyRoutes />
       {/* <Loading /> */}
       {/* <WelcScreen /> */}
     </div>

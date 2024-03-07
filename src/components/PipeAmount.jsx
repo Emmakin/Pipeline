@@ -1,8 +1,8 @@
 import React from 'react'
 import Vector from '../assets/Vector.svg'
-import Padlock from '../assets/padlock.svg'
+import Padlock from '../assets/Padlock.svg'
 
-const PipeAmount = ({pTitle,pAmount}) => {
+const PipeAmount = ({pTitle, pAmount}) => {
   return (
     <div>
         <div className='flex flex-col justify-center'>

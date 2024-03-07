@@ -10,8 +10,6 @@ const getSaved = (key, initialValue) => {
   if (initialValue instanceof Function) {
     return initialValue();
   }
-
-  console.log(initialValue);
   return initialValue;
 };
 

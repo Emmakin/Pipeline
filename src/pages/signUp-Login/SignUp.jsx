@@ -6,15 +6,26 @@ import PageNav from "../../components/PageNav";
 import useSessionStorage from "../../modules/useSS";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
+import {
+  validateEmail,
+  validateName,
+  validatePassword,
+  validatePhone,
+} from "../../modules/validateForm";
+// import post from "../../modules/post.jsx";
 
 function SignUp() {
-  const [username, setUsername] = useSessionStorage('username', {
+  const [username, setUsername] = useSessionStorage("pipelineUsername", {
     val: "",
     isError: false,
     errorMsg: "",
   });
-  const [email, setEmail] = useSessionStorage("email", { val: "", isError: false, errorMsg: "" });
-  const [phoneNum, setPhoneNum] = useSessionStorage("phone", {
+  const [email, setEmail] = useSessionStorage("pipelineEmail", {
+    val: "",
+    isError: false,
+    errorMsg: "",
+  });
+  const [phoneNum, setPhoneNum] = useSessionStorage("pipelinePhone", {
     val: "",
     isError: false,
     errorMsg: "",
@@ -25,7 +36,7 @@ function SignUp() {
     errorMsg: "",
   });
   const [touched, setTouched] = useState(false);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   const validatedNameRef = useRef(false);
@@ -36,108 +47,13 @@ function SignUp() {
 
   const url = "https://pipeline-mnbv.onrender.com";
 
-  const validateName = () => {
-    if (!username.val) {
-      setUsername({
-        ...username,
-        isError: true,
-        errorMsg: "Please input your name",
-      });
-      return;
-    }
-    setUsername({
-      ...username,
-      isError: false,
-      errorMsg: "",
-    });
-    validatedNameRef.current = true;
-  };
-
-  const validateEmail = () => {
-    if (!email.val) {
-      setEmail({
-        ...email,
-        isError: true,
-        errorMsg: "Please input your email",
-      });
-      return;
-    }
-    const reg = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
-    if (!reg.test(email.val)) {
-      setEmail({
-        ...email,
-        isError: true,
-        errorMsg: "Invalid email",
-      });
-      return;
-    }
-    setEmail({
-      ...email,
-      isError: false,
-      errorMsg: "",
-    });
-    validatedEmailRef.current = true;
-  };
-
-  const validatePhone = () => {
-    if (!phoneNum.val) {
-      setPhoneNum({
-        ...phoneNum,
-        isError: true,
-        errorMsg: "Please input your phone number",
-      });
-      return;
-    }
-    const reg = /^\d{11}$/;
-    if (!reg.test(phoneNum.val)) {
-      setPhoneNum({
-        ...phoneNum,
-        isError: true,
-        errorMsg: "Invalid phone number",
-      });
-      console.log("Invalid phone num", reg.test(phoneNum.val));
-      return;
-    }
-    setPhoneNum({
-      ...phoneNum,
-      isError: false,
-      errorMsg: "",
-    });
-    validatedPhoneRef.current = true;
-  };
-
-  const validatePassword = () => {
-    if (!password.val) {
-      setPassword({
-        ...password,
-        isError: true,
-        errorMsg: "Please input your password",
-      });
-      return;
-    }
-    if (password.val.length < 6) {
-      setPassword({
-        ...password,
-        isError: true,
-        errorMsg: "Password should be more than 6 characters",
-      });
-      return;
-    }
-    setPassword({
-      ...password,
-      isError: false,
-      errorMsg: "",
-    });
-    validatedPassRef.current = true;
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     setTouched(true);
-    validateName();
-    validateEmail();
-    validatePhone();
-    validatePassword();
+    validateName(username, setUsername, validatedNameRef);
+    validateEmail(email, setEmail, validatedEmailRef);
+    validatePhone(phoneNum, setPhoneNum, validatedPhoneRef);
+    validatePassword(password, setPassword, validatedPassRef);
     const valid =
       validatedNameRef.current &&
       validatedEmailRef.current &&
@@ -146,43 +62,48 @@ function SignUp() {
       checkedRef.current.checked;
     if (valid) {
       register()
-      .then((res) => {
-        if(res.ok || res.status === 409) {
-          navigate('/home/welcome')
-        }
-        setLoading(false)
-        console.log(res)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+        .then((res) => {
+          if (res.ok || res.status === 409) {
+            navigate("/home/welcome");
+          }
+          setLoading(false);
+          console.log(res);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else console.log("Not valid");
   };
 
   const post = async (path, body) => {
-      setLoading(true)
-      let res = await fetch(`${url}/${path}`, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      }).catch((error) => {
-        navigate("/signup/error")
-      })
-      return res
-  };
-  
-  const register = async () => {
-    const res = await post("auth/register", {
-      full_name: username.val,
-      email: email.val,
-      phone_number: "+234" + phoneNum.val.substring(1),
-      password: password.val,
-      image: "",
+
+    setLoading(true);
+    let res = await fetch(`${url}/${path}`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    }).catch((error) => {
+      navigate("/signup/error");
+      return;
     });
-  return res
-}
+    return res;
+  };
+
+  const register = async () => {
+    const res = await post(
+      "auth/register",
+      {
+        full_name: username.val,
+        email: email.val,
+        phone_number: "+234" + phoneNum.val.substring(1),
+        password: password.val,
+        image: "",
+      }
+    );
+    return res;
+  };
 
   return (
     <div>
@@ -198,15 +119,13 @@ function SignUp() {
             labelContent={"Name"}
             inputName={"name"}
             inputType={"text"}
-            value={username.val}
-            isError={username.isError}
-            errorMsg={username.errorMsg}
+            info={username}
             onChange={(event) => {
               setUsername({ ...username, val: event.target.value });
             }}
             onBlur={() => {
               if (touched) {
-                validateName();
+                validateName(username, setUsername, validatedNameRef);
               }
             }}
           />
@@ -214,15 +133,13 @@ function SignUp() {
             labelContent={"Email"}
             inputName={"email"}
             inputType={"email"}
-            value={email.val}
-            isError={email.isError}
-            errorMsg={email.errorMsg}
+            info={email}
             onChange={(event) => {
               setEmail({ ...email, val: event.target.value });
             }}
             onBlur={() => {
               if (touched) {
-                validateEmail();
+                validateEmail(email, setEmail, validatedEmailRef);
               }
             }}
           />
@@ -230,15 +147,13 @@ function SignUp() {
             labelContent={"Phone Number"}
             inputName={"phoneNumber"}
             inputType={"tel"}
-            isError={phoneNum.isError}
-            errorMsg={phoneNum.errorMsg}
-            value={phoneNum.val}
+            info={phoneNum}
             onChange={(event) => {
               setPhoneNum({ ...phoneNum, val: event.target.value });
             }}
             onBlur={() => {
               if (touched) {
-                validatePhone();
+                validatePhone(phoneNum, setPhoneNum, validatedPhoneRef);
               }
             }}
           />
@@ -246,15 +161,13 @@ function SignUp() {
             labelContent={"Password"}
             inputName={"password"}
             inputType={"password"}
-            isError={password.isError}
-            errorMsg={password.errorMsg}
+            info={password}
             onChange={(event) => {
               setPassword({ ...password, val: event.target.value });
             }}
-            value={password.val}
             onBlur={() => {
               if (touched) {
-                validatePassword();
+                validatePassword(password, setPassword, validatedPassRef);
               }
             }}
           />

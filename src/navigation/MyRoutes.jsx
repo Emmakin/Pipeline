@@ -15,6 +15,7 @@ import Error from '../pages/signUp-Login/Error.jsx';
 // import Test from "./pages/Test.jsx";
 import  WelcomePage from "../pages/homePage/WelcomePage.jsx"
 import EntryPage from "../pages/signUp-Login/EntryPage.jsx"
+import Login from '../pages/signUp-Login/Login.jsx';
 
 
 const MyRoutes = () => {
@@ -22,6 +23,7 @@ const MyRoutes = () => {
     <Router>
         <Routes>
           <Route path='/' element={<EntryPage />}></Route>
+            <Route path='login' element={<Login />}></Route>
             <Route path='signup' element={<SignUp />}></Route>
             <Route path='signup/error' element={<Error />}></Route>
             <Route path='home/welcome' element={<WelcomePage />}></Route>

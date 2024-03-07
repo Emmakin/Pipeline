@@ -1,6 +1,9 @@
 import React, { useRef } from "react";
 import MyRoutes from "./navigation/MyRoutes.jsx";
 import Loading from "./components/Loading.jsx";
+import Login from "./pages/signUp-Login/Login.jsx";
+import LabelAndInput, { LabelAndInputAndLogo } from "./components/LabelAndInput.jsx";
+
 
 function App() {
   return (
@@ -17,6 +20,7 @@ function App() {
       {/* <Test /> */}
       <MyRoutes />
       {/* <Loading /> */}
+      {/* <WelcScreen /> */}
     </div>
   );
 }

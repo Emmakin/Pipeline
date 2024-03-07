@@ -12,9 +12,10 @@ import {
   validatePassword,
   validatePhone,
 } from "../../modules/validateForm";
+import usePost from "../../modules/usePost";
 // import post from "../../modules/post.jsx";
 
-function SignUp() {
+const  SignUp = () => {
   const [username, setUsername] = useSessionStorage("pipelineUsername", {
     val: "",
     isError: false,
@@ -36,7 +37,8 @@ function SignUp() {
     errorMsg: "",
   });
   const [touched, setTouched] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const [loading, sendRequest, setLoading] = usePost()
 
   const navigate = useNavigate();
   const validatedNameRef = useRef(false);
@@ -75,33 +77,34 @@ function SignUp() {
     } else console.log("Not valid");
   };
 
-  const post = async (path, body) => {
-
-    setLoading(true);
-    let res = await fetch(`${url}/${path}`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    }).catch((error) => {
-      navigate("/signup/error");
-      return;
-    });
-    return res;
-  };
+  // const post = async (path, body) => {
+  //   setLoading(true);
+  //   let res = await fetch(`${url}/${path}`, {
+  //     method: "post",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(body),
+  //   }).catch((error) => {
+  //     navigate("/signup/error");
+  //     return;
+  //   });
+  //   return res;
+  // };
 
   const register = async () => {
-    const res = await post(
+    const res = await sendRequest(
       "auth/register",
+      "POST",
       {
         full_name: username.val,
         email: email.val,
         phone_number: "+234" + phoneNum.val.substring(1),
         password: password.val,
         image: "",
-      }
+      },
     );
+    console.log(res)
     return res;
   };
 

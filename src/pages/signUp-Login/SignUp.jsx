@@ -13,9 +13,10 @@ import {
   validatePhone,
 } from "../../modules/validateForm";
 import usePost from "../../modules/useRequest";
+import Error from "../../components/Error";
 // import post from "../../modules/post.jsx";
 
-const  SignUp = () => {
+const SignUp = () => {
   const [username, setUsername] = useSessionStorage("pipelineUsername", {
     val: "",
     isError: false,
@@ -38,7 +39,7 @@ const  SignUp = () => {
   });
   const [touched, setTouched] = useState(false);
 
-  const {loading, sendRequest, setLoading} = usePost()
+  const { loading, sendRequest, setLoading, error, setError } = usePost();
 
   const navigate = useNavigate();
   const validatedNameRef = useRef(false);
@@ -65,37 +66,45 @@ const  SignUp = () => {
     if (valid) {
       register()
         .then((res) => {
-          if (!res.ok) {
-            throw new Error("Error")
-          }
           setLoading(false);
+          if (res.status === 409) {
+            setError({
+              status: true,
+              msg: "User with the inputed credentials already exists. Try again or login if you already have a pipeline account.",
+            });
+          } else if (!res.ok) {
+            setError({
+              status: true,
+              msg: "Invalid credentials. Please try again",
+            });
+          }
           console.log(res);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((error) => {});
     } else console.log("Not valid");
   };
 
   const register = async () => {
-    const res = await sendRequest(
-      "auth/register",
-      "POST",
-      {
-        full_name: username.val,
-        email: email.val,
-        phone_number: "+234" + phoneNum.val.substring(1),
-        password: password.val,
-        image: "",
-      },
-    );
-    console.log(res)
+    const res = await sendRequest("auth/register", "POST", {
+      full_name: username.val,
+      email: email.val,
+      phone_number: "+234" + phoneNum.val.substring(1),
+      password: password.val,
+      image: "",
+    });
+    console.log(res);
     return res;
   };
 
   return (
     <div>
       {loading && <Loading />}
+      {error.status && (
+        <Error
+          onCancle={() => setError({ status: false, msg: undefined })}
+          errormsg={error.msg}
+        />
+      )}
       <div className="p-4">
         <PageNav pageTitle={"Sign Up"} />
         <section>
@@ -180,10 +189,14 @@ const  SignUp = () => {
               Sign Up
             </MainButton>
           </span>
+
+          <p className="text-center text-sm">
+            Already have an account? <span className="text-mainBlue underline" onClick={() => navigate("/login")}>Login</span>
+          </p>
         </form>
       </div>
     </div>
   );
-}
+};
 
 export default SignUp;

@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import MyRoutes from "./navigation/MyRoutes.jsx";
 import Loading from "./components/Loading.jsx";
 import Login from "./pages/signUp-Login/Login.jsx";
-
 import WelcomePage from "./pages/homePage/WelcomePage.jsx";
 import Error from "./components/Error.jsx";
 
@@ -20,9 +19,10 @@ function App() {
       {/* <Pipe /> */}
       {/* <Test /> */}
       {/* <MyRoutes /> */}
+      <WelcomePage />
       {/* <Loading /> */}
       {/* <WelcScreen /> */}
-      <Error />
+      {/* <Error /> */}
     </div>
   );
 }

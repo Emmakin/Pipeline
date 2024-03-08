@@ -15,6 +15,7 @@ import SignUp from '../pages/signUp-Login/SignUp.jsx'
 import  WelcomePage from "../pages/homePage/WelcomePage.jsx"
 import EntryPage from "../pages/signUp-Login/EntryPage.jsx"
 import Login from '../pages/signUp-Login/Login.jsx';
+import EmailVeriSent from '../pages/signUp-Login/EmailVeriSent.jsx';
 
 const MyRoutes = () => {
   return (
@@ -23,7 +24,7 @@ const MyRoutes = () => {
           <Route path='/' element={<EntryPage />}></Route>
             <Route path='login' element={<Login />}></Route>
             <Route path='signup' element={<SignUp />}></Route>
-            <Route path='/error' element={<Error />}></Route>
+            <Route path='verifyEmail' element={<EmailVeriSent />}></Route>
             <Route path='home/welcome' element={<WelcomePage />}></Route>
         </Routes>
     </Router>

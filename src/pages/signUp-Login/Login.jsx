@@ -24,7 +24,6 @@ const Login = () => {
     errorMsg: "",
   });
   const [touched, setTouched] = useState(false);
-  const [formError, setFormError] = useState({ status: false, msg: "" });
   const {setUserDetails} = useUser()
 
   const navigate = useNavigate();
@@ -69,7 +68,10 @@ const Login = () => {
             return res.json();
           }
         })
-      .then((res) => {if(res) setUserDetails(res.user)})
+      .then((res) => {if(res) {
+        setUserDetails(res.user)
+        navigate("/home/welcome")
+      }})
         .catch((error) => {
           console.log(error);
           setError({ status: true, msg: "Something went wrong. Try again." });
@@ -120,11 +122,6 @@ const Login = () => {
                 validatePassword(password, setPassword, validatedPassRef);
             }}
           />
-          {formError.status && (
-            <p className="text-red-500 text-xs text-center mt-4">
-              {formError.msg}
-            </p>
-          )}
         </form>
         <p className="text-mainBlue text-sm text-right">Forgot Password?</p>
         <div className="flex justify-between w-4/5 mx-auto mt-12 items-center">

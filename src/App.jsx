@@ -18,8 +18,8 @@ function App() {
       {/* <NewPasswordCreated /> */}
       {/* <Pipe /> */}
       {/* <Test /> */}
-      {/* <MyRoutes /> */}
-      <WelcomePage />
+      <MyRoutes />
+      {/* <WelcomePage /> */}
       {/* <Loading /> */}
       {/* <WelcScreen /> */}
       {/* <Error /> */}

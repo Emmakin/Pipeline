@@ -19,6 +19,7 @@ const useRequest = () => {
     }).catch((error) => {
       setLoading(false)
       setError({status: true, msg: "Something went wrong. Try again."})
+      return error
     });
     setLoading(false)
     return res;

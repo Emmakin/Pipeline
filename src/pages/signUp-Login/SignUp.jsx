@@ -72,11 +72,15 @@ const SignUp = () => {
               status: true,
               msg: "User with the inputed credentials already exists. Try again or login if you already have a pipeline account.",
             });
+            return
           } else if (!res.ok) {
             setError({
               status: true,
               msg: "Invalid credentials. Please try again",
             });
+            return
+          } else if(res.ok) {
+            navigate("/home/welcome")
           }
           console.log(res);
         })
@@ -85,7 +89,7 @@ const SignUp = () => {
   };
 
   const register = async () => {
-    const res = await sendRequest("auth/register", "POST", {
+    const res = await sendRequest("auth/register", "post", {
       full_name: username.val,
       email: email.val,
       phone_number: "+234" + phoneNum.val.substring(1),
@@ -190,7 +194,7 @@ const SignUp = () => {
             </MainButton>
           </span>
 
-          <p className="text-center text-sm">
+          <p className="text-center text-sm mt-2">
             Already have an account? <span className="text-mainBlue underline" onClick={() => navigate("/login")}>Login</span>
           </p>
         </form>

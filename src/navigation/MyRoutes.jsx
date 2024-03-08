@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from '../pages/signUp-Login/SignUp.jsx'
-import Error from '../pages/signUp-Login/Error.jsx';
 // import EntryPage from "./pages/EntryPage";
 // import Login from "./pages/Login";
 // import EmailVeriSent from "./pages/EmailVeriSent";
@@ -16,7 +15,6 @@ import Error from '../pages/signUp-Login/Error.jsx';
 import  WelcomePage from "../pages/homePage/WelcomePage.jsx"
 import EntryPage from "../pages/signUp-Login/EntryPage.jsx"
 import Login from '../pages/signUp-Login/Login.jsx';
-
 
 const MyRoutes = () => {
   return (

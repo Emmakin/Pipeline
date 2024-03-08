@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 import useSessionStorage from "../../modules/useSS";
 import { validateEmail, validatePassword } from "../../modules/validateForm";
 import Loading from "../../components/Loading";
+import useRequest from "../../modules/useRequest";
+import Error from "../../components/Error";
+import { useUser } from "../../MainContext";
 
 const Login = () => {
   const [email, setEmail] = useSessionStorage("pipelineEmail", {
@@ -21,36 +24,22 @@ const Login = () => {
     errorMsg: "",
   });
   const [touched, setTouched] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState({ status: false, msg: "" });
+  const {setUserDetails} = useUser()
 
   const navigate = useNavigate();
   const validatedEmailRef = useRef(false);
   const validatedPassRef = useRef(false);
+  const { loading, setLoading, sendRequest, setError, error } = useRequest();
 
   const url = "https://pipeline-mnbv.onrender.com";
 
-  const post = async (path, body) => {
-    setLoading(true);
-    let res = await fetch(`${url}/${path}`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    }).catch((error) => {
-      navigate("/signup/error");
-      return;
-    });
-    return res;
-  };
-
   const login = async () => {
-    setLoading(true)
-    const res = await post("auth/login", {
+    const res = await sendRequest("auth/login", "post", {
       email: email.val,
       password: password.val,
     });
+    console.log(res);
     return res;
   };
 
@@ -63,30 +52,39 @@ const Login = () => {
       console.log("Okay");
       login()
         .then((res) => {
-          setLoading(false)
+          setLoading(false);
           if (res.status === 404) {
-            setFormError({
+            setError({
               status: true,
-              msg: "User with email does not exist. Please check email or click register to open a pipeline account",
+              msg: "User with credentials does not exist. Please check email or click register to open a pipeline account.",
             });
-          }
-          else if (!res.ok) {
-            setFormError({
+            return;
+          } else if (!res.ok) {
+            setError({
               status: true,
-              msg: "Invalid Email or Password! Please try again",
+              msg: "Invalid Email or Password! Please try again.",
             });
+            return;
+          } else if (res.ok) {
+            return res.json();
           }
-          return res;
         })
-        .then((res) => console.log(res))
+      .then((res) => {if(res) setUserDetails(res.user)})
         .catch((error) => {
           console.log(error);
+          setError({ status: true, msg: "Something went wrong. Try again." });
         });
     }
   };
   return (
     <div>
       {loading && <Loading />}
+      {error.status && (
+        <Error
+          errormsg={error.msg}
+          onCancle={() => setError({ status: false, msg: undefined })}
+        />
+      )}
       <div className="p-4">
         <PageNav pageTitle="Login" />
         <h1 className="text-textBlue text-2xl font-bold mb-3">Welcome</h1>

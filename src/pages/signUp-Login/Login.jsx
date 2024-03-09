@@ -48,7 +48,6 @@ const Login = () => {
     validatePassword(password, setPassword, validatedPassRef);
 
     if (validatedEmailRef.current && validatedPassRef.current) {
-      console.log("Okay");
       login()
         .then((res) => {
           setLoading(false);

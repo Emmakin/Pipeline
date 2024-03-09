@@ -80,6 +80,7 @@ const SignUp = () => {
             });
             return
           } else if(res.ok) {
+            // setUse
             navigate("/home/welcome")
           }
           console.log(res);

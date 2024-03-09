@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const useRequest = () => {
+const useRequest = useCallback(() => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({status: false, msg: undefined})
 
@@ -26,6 +26,6 @@ const useRequest = () => {
   };
 
   return {loading, setLoading, sendRequest, error, setError};
-};
+})
 
 export default useRequest;

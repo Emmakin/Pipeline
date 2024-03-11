@@ -57,7 +57,7 @@ const Login = () => {
               msg: "User with credentials does not exist. Please check email or click register to open a pipeline account.",
             });
             return;
-          } else if (!res.ok) {
+          } else if (res.status >= 400) {
             setError({
               status: true,
               msg: "Invalid Email or Password! Please try again.",

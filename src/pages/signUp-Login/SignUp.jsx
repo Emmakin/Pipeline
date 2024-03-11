@@ -14,6 +14,7 @@ import {
 } from "../../modules/validateForm";
 import usePost from "../../modules/useRequest";
 import Error from "../../components/Error";
+import { useUser } from "../../MainContext";
 // import post from "../../modules/post.jsx";
 
 const SignUp = () => {
@@ -47,6 +48,7 @@ const SignUp = () => {
   const validatedPhoneRef = useRef(false);
   const validatedPassRef = useRef(false);
   const checkedRef = useRef();
+  const {setUserDetails} = useUser()
 
   const url = "https://pipeline-mnbv.onrender.com";
 
@@ -73,17 +75,22 @@ const SignUp = () => {
               msg: "User with the inputed credentials already exists. Try again or login if you already have a pipeline account.",
             });
             return
-          } else if (!res.ok) {
+          } else if (res.status >= 400) {
             setError({
               status: true,
               msg: "Invalid credentials. Please try again",
             });
             return
           } else if(res.ok) {
-            // setUse
-            navigate("/home/welcome")
+            return res.json()
           }
           console.log(res);
+        })
+        .then((res) => {
+          if (res) {
+            setUserDetails(res);
+            navigate("/home/welcome")
+          }
         })
         .catch((error) => {});
     } else console.log("Not valid");

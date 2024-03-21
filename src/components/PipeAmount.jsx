@@ -1,6 +1,6 @@
 import React from 'react'
 import Vector from '../assets/Vector.svg'
-import Padlock from '../assets/Padlock.svg'
+import Padlock from '../assets/padlock.svg'
 
 const PipeAmount = ({pTitle, pAmount}) => {
   return (

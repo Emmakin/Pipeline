@@ -18,9 +18,10 @@ function App() {
       {/* <NewPasswordCreated /> */}
       {/* <Pipe /> */}
       {/* <Test /> */}
-      <MyRoutes />
+      {/* <MyRoutes /> */}
       {/* <Loading /> */}
       {/* <WelcScreen /> */}
+      <WelcomePage />
     </div>
   );
 }

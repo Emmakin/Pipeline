@@ -7,6 +7,7 @@ const EmailVeriSent = () => {
   const {userDetails} = useUser()
   const openEmail = (event) => {
     console.log(userDetails)
+    window.open("mailto:")
   }
   return (
     <div className="p-4 text-center">

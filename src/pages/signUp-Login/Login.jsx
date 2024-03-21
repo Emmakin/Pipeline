@@ -77,6 +77,7 @@ const Login = () => {
         });
     }
   };
+  
   return (
     <div>
       {loading && <Loading />}
@@ -122,7 +123,7 @@ const Login = () => {
             }}
           />
         </form>
-        <p className="text-mainBlue text-sm text-right">Forgot Password?</p>
+        <p className="text-mainBlue text-sm text-right" onClick={() => navigate("/passrecovery/enteremail")}>Forgot Password?</p>
         <div className="flex justify-between w-4/5 mx-auto mt-12 items-center">
           <button
             className="text-xs bg-mainBlueFade text-mainBlue px-6 py-1.5 rounded-full h-fit"

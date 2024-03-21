@@ -89,7 +89,7 @@ const SignUp = () => {
         .then((res) => {
           if (res) {
             setUserDetails(res);
-            navigate("/home/welcome")
+            navigate("/verifyEmail")
           }
         })
         .catch((error) => {});

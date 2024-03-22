@@ -4,9 +4,10 @@ const UserContext = createContext();
 
 export const MainContext = ({ children }) => {
   const [userDetails, setUserDetails] = useSessionStorage("userDetails", {});
+  const [resetEmail, setResetEmail] = useState()
 
   return (
-    <UserContext.Provider value={{ userDetails, setUserDetails }}>
+    <UserContext.Provider value={{ userDetails, setUserDetails, resetEmail, setResetEmail }}>
       {children}
     </UserContext.Provider>
   );

@@ -11,7 +11,7 @@ const PipeAmount = ({pTitle, pAmount}) => {
               <span className='font-inter text-base font-normal leading-5 tracking-normal text-left capitalize '>{pAmount}</span>
               <img src={Vector} alt='view'/>
             </div>
-            <span>
+            <span className='flex justify-center'>
               <img src={Padlock} alt='padlock'/>
             </span>
         </div>

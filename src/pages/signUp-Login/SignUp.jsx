@@ -12,9 +12,12 @@ import {
   validatePassword,
   validatePhone,
 } from "../../modules/validateForm";
+import usePost from "../../modules/useRequest";
+import Error from "../../components/Error";
+import { useUser } from "../../MainContext";
 // import post from "../../modules/post.jsx";
 
-function SignUp() {
+const SignUp = () => {
   const [username, setUsername] = useSessionStorage("pipelineUsername", {
     val: "",
     isError: false,
@@ -36,7 +39,8 @@ function SignUp() {
     errorMsg: "",
   });
   const [touched, setTouched] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const { loading, sendRequest, setLoading, error, setError } = usePost();
 
   const navigate = useNavigate();
   const validatedNameRef = useRef(false);
@@ -44,6 +48,7 @@ function SignUp() {
   const validatedPhoneRef = useRef(false);
   const validatedPassRef = useRef(false);
   const checkedRef = useRef();
+  const {setUserDetails} = useUser()
 
   const url = "https://pipeline-mnbv.onrender.com";
 
@@ -63,51 +68,55 @@ function SignUp() {
     if (valid) {
       register()
         .then((res) => {
-          if (res.ok || res.status === 409) {
-            navigate("/home/welcome");
-          }
           setLoading(false);
+          if (res.status === 409) {
+            setError({
+              status: true,
+              msg: "User with the inputed credentials already exists. Try again or login if you already have a pipeline account.",
+            });
+            return
+          } else if (res.status >= 400) {
+            setError({
+              status: true,
+              msg: "Invalid credentials. Please try again",
+            });
+            return
+          } else if(res.ok) {
+            return res.json()
+          }
           console.log(res);
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .then((res) => {
+          if (res) {
+            setUserDetails(res);
+            navigate("/verifyEmail")
+          }
+        })
+        .catch((error) => {});
     } else console.log("Not valid");
   };
 
-  const post = async (path, body) => {
-
-    setLoading(true);
-    let res = await fetch(`${url}/${path}`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    }).catch((error) => {
-      navigate("/signup/error");
-      return;
-    });
-    return res;
-  };
-
   const register = async () => {
-    const res = await post(
-      "auth/register",
-      {
-        full_name: username.val,
-        email: email.val,
-        phone_number: "+234" + phoneNum.val.substring(1),
-        password: password.val,
-        image: "",
-      }
-    );
+    const res = await sendRequest("auth/register", "post", {
+      full_name: username.val,
+      email: email.val,
+      phone_number: "+234" + phoneNum.val.substring(1),
+      password: password.val,
+      image: "",
+    });
+    console.log(res);
     return res;
   };
 
   return (
     <div>
       {loading && <Loading />}
+      {error.status && (
+        <Error
+          onCancle={() => setError({ status: false, msg: undefined })}
+          errormsg={error.msg}
+        />
+      )}
       <div className="p-4">
         <PageNav pageTitle={"Sign Up"} />
         <section>
@@ -192,10 +201,14 @@ function SignUp() {
               Sign Up
             </MainButton>
           </span>
+
+          <p className="text-center text-sm mt-2">
+            Already have an account? <span className="text-mainBlue underline" onClick={() => navigate("/login")}>Login</span>
+          </p>
         </form>
       </div>
     </div>
   );
-}
+};
 
 export default SignUp;

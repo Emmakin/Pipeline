@@ -2,8 +2,10 @@ import React, { useRef } from "react";
 import MyRoutes from "./navigation/MyRoutes.jsx";
 import Loading from "./components/Loading.jsx";
 import Login from "./pages/signUp-Login/Login.jsx";
-
 import WelcomePage from "./pages/homePage/WelcomePage.jsx";
+import Error from "./components/Error.jsx";
+import PipeAmount from "./components/PipeAmount.jsx";
+import PipelineUnit from "./components/Pipe.jsx";
 
 function App() {
   return (
@@ -18,10 +20,12 @@ function App() {
       {/* <NewPasswordCreated /> */}
       {/* <Pipe /> */}
       {/* <Test /> */}
-      {/* <MyRoutes /> */}
+      <MyRoutes />
+      {/* <PipeAmount /> */}
+      {/* <PipelineUnit /> */}
+      {/* <WelcomePage /> */}
       {/* <Loading /> */}
       {/* <WelcScreen /> */}
-      <WelcomePage />
     </div>
   );
 }

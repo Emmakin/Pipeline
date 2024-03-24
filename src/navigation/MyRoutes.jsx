@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignUp from '../pages/signUp-Login/SignUp.jsx'
-import Error from '../pages/signUp-Login/Error.jsx';
 // import EntryPage from "./pages/EntryPage";
 // import Login from "./pages/Login";
 // import EmailVeriSent from "./pages/EmailVeriSent";
@@ -16,7 +15,11 @@ import Error from '../pages/signUp-Login/Error.jsx';
 import  WelcomePage from "../pages/homePage/WelcomePage.jsx"
 import EntryPage from "../pages/signUp-Login/EntryPage.jsx"
 import Login from '../pages/signUp-Login/Login.jsx';
-
+import EmailVeriSent from '../pages/signUp-Login/EmailVeriSent.jsx';
+import EnterEmail from '../pages/passwordRecovery/EnterEmail.jsx';
+import EmailSent from '../pages/passwordRecovery/EmailSent.jsx';
+import SetPassword from "../pages/passwordRecovery/SetPassword.jsx";
+import NewPasswordCreated from "../pages/passwordRecovery/NewPasswordCreated.jsx"
 
 const MyRoutes = () => {
   return (
@@ -25,8 +28,12 @@ const MyRoutes = () => {
           <Route path='/' element={<EntryPage />}></Route>
             <Route path='login' element={<Login />}></Route>
             <Route path='signup' element={<SignUp />}></Route>
-            <Route path='signup/error' element={<Error />}></Route>
+            <Route path='verifyEmail' element={<EmailVeriSent />}></Route>
             <Route path='home/welcome' element={<WelcomePage />}></Route>
+            <Route path="passrecovery/enteremail" element={<EnterEmail />}></Route>
+            <Route path="passrecovery/emailsent" element={<EmailSent />}></Route>
+            <Route path="passrecovery/enternewpass" element={<SetPassword />}></Route>
+            <Route path="passrecovery/loginnewpass" element={<NewPasswordCreated />}></Route>
         </Routes>
     </Router>
   )

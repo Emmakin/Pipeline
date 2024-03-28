@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import HeadAmount from '../../components/HeadAmount.jsx'
-import PipelineUnit from '../../components/Pipe.jsx'
+import PipelineUnit from '../../components/PipeUnit.jsx'
 import Transaction from '../../components/Transaction.jsx'
 import { useUser } from '../../MainContext.jsx'
 import HeadText from '../../components/HeadText.jsx'
 
 const WelcomePage = () => {
+
   // const {userDetails} = useUser()
   const [userDetails, setUserDetails] = useState()
   return (
@@ -20,12 +21,12 @@ const WelcomePage = () => {
       </span>
       <section className='flex justify-evenly align-middle mt-7'>
         <PipelineUnit 
-        pipeName='Personal'
-        amount="XXXX.XX"
+          pTitle="personal"
+          pAmount="AAAA.AA"
         />
         <PipelineUnit 
-        pipeName='Personal'
-        amount="XXXX.XX"
+          pTitle="business"
+          pAmount="AAAA.AA"
         />
       </section>
       <section className='mt-8 bg-white rounded-2xl pl-8 pr-8'>

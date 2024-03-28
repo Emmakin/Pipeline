@@ -9,15 +9,15 @@ import PipeAmount from "./PipeAmount.jsx";
 //     </div>
 //   );
 // };
-  const PipelineUnit = () => {
+  const PipelineUnit = ({pTitle, pAmount}) => {
     return (
       <div className="flex flex-col justify-content mx-auto my-auto">
           <div className="w-20 h-80 pt-46 pb-0 pr-0 pl-0 rounded-2xl border-2 border-textBlue">
             <div className="w-1/2 bg-textBlue"></div>
           </div>
           <PipeAmount
-            pTitle='personal'
-            pAmount='XXXX.XX'
+            pTitle={pTitle}
+            pAmount={pAmount}
           />
       </div>
     );

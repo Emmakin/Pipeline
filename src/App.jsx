@@ -20,7 +20,8 @@ function App() {
       {/* <NewPasswordCreated /> */}
       {/* <Pipe /> */}
       {/* <Test /> */}
-      <MyRoutes />
+      {/* <MyRoutes /> */}
+      <WelcomePage />
       {/* <PipeAmount /> */}
       {/* <PipelineUnit /> */}
       {/* <WelcomePage /> */}

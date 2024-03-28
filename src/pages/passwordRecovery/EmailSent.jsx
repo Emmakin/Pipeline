@@ -18,7 +18,7 @@ const EmailSent = () => {
         password
       </p>
       <MainButton addStyles={"mt-10"} onClick={() => {
-        window.open("mailto:")
+        // window.open("mailto:")
         navigate("/login")
         }}>
         Check Email

@@ -20,11 +20,11 @@ function App() {
       {/* <NewPasswordCreated /> */}
       {/* <Pipe /> */}
       {/* <Test /> */}
-      {/* {/* <MyRoutes /> */}
-      <WelcomePage /> */}
+      <MyRoutes />
+      {/* <WelcomePage />  */}
       {/* <PipeAmount /> */}
       {/* <PipelineUnit /> */}
-      <WelcomePage />
+      {/* <WelcomePage /> */}
       {/* <Loading /> */}
       {/* <WelcScreen /> */}
     </div>

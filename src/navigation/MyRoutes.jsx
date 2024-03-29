@@ -33,7 +33,6 @@ const MyRoutes = () => {
             <Route path="passrecovery/enteremail" element={<EnterEmail />}></Route>
             <Route path="passrecovery/emailsent" element={<EmailSent />}></Route>
             <Route path="passrecovery/enternewpass" element={<SetPassword />}></Route>
-            <Route path="passrecovery/loginnewpass" element={<NewPasswordCreated />}></Route>
         </Routes>
     </Router>
   )

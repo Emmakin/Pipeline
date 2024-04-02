@@ -24,7 +24,7 @@ const Login = () => {
     errorMsg: "",
   });
   const [touched, setTouched] = useState(false);
-  const {setUserDetails} = useUser()
+  const {setUserDetails, setAuth} = useUser()
 
   const navigate = useNavigate();
   const validatedEmailRef = useRef(false);
@@ -34,7 +34,7 @@ const Login = () => {
   const url = "https://pipeline-mnbv.onrender.com";
 
   const login = async () => {
-    const res = await sendRequest("auth/login", "post", {
+    const res = await sendRequest("auth/login", "POST", {
       email: email.val,
       password: password.val,
     });
@@ -68,6 +68,8 @@ const Login = () => {
           }
         })
       .then((res) => {if(res) {
+        console.log(res)
+        setAuth(res.access_token)
         setUserDetails(res.user)
         navigate("/home/welcome")
       }})

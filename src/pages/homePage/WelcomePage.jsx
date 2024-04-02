@@ -7,61 +7,62 @@ import HeadText from "../../components/HeadText.jsx";
 import useRequest from "../../modules/useRequest.jsx";
 
 const WelcomePage = () => {
-  // const {userDetails} = useUser()
+  const { auth } = useUser();
   const [userDetails, setUserDetails] = useState();
-  const [mainPipelines, setMainPipelines] = useState();
+  const [mainPipelines, setMainPipelines] = useState([]);
   const { loading, sendRequest, error, setError, setLoading } = useRequest();
 
   useEffect(() => {
     getUser()
       .then((res) => {
         if (!res.ok) {
-          return res
-            .json()
-            .then((data) => console.log(data));
+          return res.json().then((data) => console.log(data));
         } else return res.json();
       })
       .then((data) => {
-        console.log(data);
         setUserDetails(data);
       })
       .catch((error) => console.log(error));
-  }, []);
 
-  useEffect(() => {
     getMainPipelines()
       .then((res) => {
         if (!res.ok) {
-          return res.json().then((data) => console.log(data))
-        } else return res.json()
+          return res.json().then((data) => console.log(data));
+        } else return res.json();
       })
       .then((data) => {
-        console.log(data)
-        setMainPipelines(data)
-      })
-  }, [])
+        console.log(data.pipelines);
+        setMainPipelines(data.pipelines);
+      });
+  }, []);
 
   const getUser = async () => {
-    const res = await sendRequest("auth/profile", "GET");
+    const res = await sendRequest("auth/profile", "GET", null, auth);
     console.log(res);
     return res;
   };
 
   const getMainPipelines = async () => {
-    const res = await sendRequest("auth/pipeines/", "GET")
-    return res
-  }
+    const res = await sendRequest("pipelines/", "GET", null, auth);
+    return res;
+  };
 
   return (
     <div className="p-8">
       <div className="font-inter text-2xl font-medium leading-9 tracking-tight text-left">
         <p>
-          Welcome <span>{userDetails?.full_name || "pipeliner"}</span>
+          Welcome <span>{userDetails?.user?.full_name || "pipeliner"}</span>
         </p>
       </div>
       <section className="flex justify-evenly align-middle mt-7">
-        <PipelineUnit pTitle="personal" pAmount="AAAA.AA" />
-        <PipelineUnit pTitle="business" pAmount="AAAA.AA" />
+        {/* <PipelineUnit pTitle="personal" pAmount="AAAA.AA" />
+        <PipelineUnit pTitle="business" pAmount="AAAA.AA" /> */}
+
+        {mainPipelines[0] ? mainPipelines.map((pipeline) => {
+          return (
+            <PipelineUnit pTitle={pipeline.name} pAmount={XXXX.XX}/>
+          )
+        }) : <p> No pipelines </p>}
       </section>
       <section className="mt-8 bg-white rounded-2xl pl-8 pr-8">
         <Transaction />

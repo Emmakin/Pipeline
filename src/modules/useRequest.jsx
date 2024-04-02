@@ -9,7 +9,7 @@ const useRequest = () => {
   const url = "https://pipeline-mnbv.onrender.com";
   const navigate = useNavigate();
 
-  const sendRequest = useCallback(async (path, method, body) => {
+  const sendRequest = useCallback(async (path, method="GET", body=null, token) => {
     const requestOptions = {
       method: method,
       headers: {
@@ -18,6 +18,9 @@ const useRequest = () => {
     };
     if (body && method !== "GET") {
       requestOptions.body = JSON.stringify(body);
+    }
+    if (token && method === "GET") {
+      requestOptions.headers["Authorization"] = `Bearer ${token}`;
     }
     setLoading(true);
 

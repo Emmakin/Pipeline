@@ -40,7 +40,7 @@ const Transact = ({
           {remark ? remark : senderName} 
         </span>
         <span className="text-xs leading-loose text-stone-400">
-          {sender} {timeStamp} John Ogaga 12:03AM
+          {senderName} {timeStamp} John Ogaga 12:03AM
         </span>
       </span>
       <span className="text-base font-bold leading-tight text-right text-green-600">

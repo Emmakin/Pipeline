@@ -1,12 +1,11 @@
 import React from 'react'
 import Filter from '../assets/Filter2.svg'
 import Search from '../assets/search.svg'
-import Transact from './Transact'
-
-
-
+// import Transact from './Transact'
+import useRequest from '../modules/useRequest'
 
 const Transaction = () => {
+  const {sendRequest} = useRequest()
   return (
     <div>
         <section className='flex flex-row justify-between gap-2'>
@@ -23,5 +22,32 @@ const Transaction = () => {
     </div>
   )
 }
+
+const Transact = ({
+  transactionAmount,
+  senderName="Pipeline",
+  timeStamp,
+  transactionType,
+  remark
+}) => {
+  return (
+    <div className="flex justify-around items-center flex-row mt-4">
+      <span className="flex align-middle justify-center w-12 h-12 p-3 rounded-full text-xl bg-slate-300 text-blue-600">
+        {senderName ? senderName[0]: "P"}
+      </span>
+      <span className="flex flex-col pl-3">
+        <span className="w-64 h-6 text-base font-medium leading-tight text-left">
+          {remark ? remark : senderName} 
+        </span>
+        <span className="text-xs leading-loose text-stone-400">
+          {sender} {timeStamp} John Ogaga 12:03AM
+        </span>
+      </span>
+      <span className="text-base font-bold leading-tight text-right text-green-600">
+        {transactionAmount}20,093
+      </span>
+    </div>
+  );
+};
 
 export default Transaction

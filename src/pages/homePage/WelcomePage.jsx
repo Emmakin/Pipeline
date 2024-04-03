@@ -31,14 +31,14 @@ const WelcomePage = () => {
         } else return res.json();
       })
       .then((data) => {
-        console.log(data.pipelines);
+        // console.log(data.pipelines);
         setMainPipelines(data.pipelines);
       });
   }, []);
 
   const getUser = async () => {
     const res = await sendRequest("auth/profile", "GET", null, auth);
-    console.log(res);
+    // console.log(res);
     return res;
   };
 

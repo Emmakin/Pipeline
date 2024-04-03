@@ -7,7 +7,7 @@ const Loading = () => {
         <div className="h-[200px] w-[50px] border-[1px] border-black rounded-2xl overflow-hidden animate-bounce items-end flex">
           <div className="bg-mainBlue h-1/2 w-full "></div>
         </div>
-        <p className="text-center text-semiBold text-xl">Loading</p>
+        <p className="text-center text-semiBold text-xl">Loading...</p>
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ const Login = () => {
     errorMsg: "",
   });
   const [touched, setTouched] = useState(false);
-  const {setUserDetails, setAuth} = useUser()
+  const { setUserDetails, setAuth } = useUser();
 
   const navigate = useNavigate();
   const validatedEmailRef = useRef(false);
@@ -67,19 +67,21 @@ const Login = () => {
             return res.json();
           }
         })
-      .then((res) => {if(res) {
-        console.log(res)
-        setAuth(res.access_token)
-        setUserDetails(res.user)
-        navigate("/home/welcome")
-      }})
+        .then((res) => {
+          if (res) {
+            console.log(res);
+            setAuth(res.access_token);
+            setUserDetails(res.user);
+            navigate("/home/welcome");
+          }
+        })
         .catch((error) => {
           console.log(error);
           setError({ status: true, msg: "Something went wrong. Try again." });
         });
     }
   };
-  
+
   return (
     <div>
       {loading && <Loading />}
@@ -125,7 +127,12 @@ const Login = () => {
             }}
           />
         </form>
-        <p className="text-mainBlue text-sm text-right" onClick={() => navigate("/passrecovery/enteremail")}>Forgot Password?</p>
+        <p
+          className="text-mainBlue text-sm text-right"
+          onClick={() => navigate("/passrecovery/enteremail")}
+        >
+          Forgot Password?
+        </p>
         <div className="flex justify-between w-4/5 mx-auto mt-12 items-center">
           <button
             className="text-xs bg-mainBlueFade text-mainBlue px-6 py-1.5 rounded-full h-fit"

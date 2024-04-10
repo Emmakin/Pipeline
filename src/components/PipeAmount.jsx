@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import Vector from '../assets/Vector.svg'
-import Padlock from '../assets/Padlock.svg'
+import Padlock from '../assets/padlock.svg'
 
 
 

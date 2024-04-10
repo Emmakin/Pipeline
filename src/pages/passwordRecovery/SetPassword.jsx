@@ -1,5 +1,5 @@
 import React from "react";
-import padlock from "../../assets/Padlock.svg";
+import padlock from "../../assets/padlock.svg";
 import HeadText from "../../components/HeadText";
 import LabelAndInput from "../../components/LabelAndInput";
 import MainButton from "../../components/MainButton";

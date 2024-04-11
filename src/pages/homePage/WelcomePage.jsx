@@ -60,7 +60,7 @@ const WelcomePage = () => {
 
         {mainPipelines[0] ? mainPipelines.map((pipeline) => {
           return (
-            <PipelineUnit pTitle={pipeline.name} pAmount={XXXX.XX}/>
+            <PipelineUnit pTitle={pipeline.name} pAmount={"XXXX.XX"}/>
           )
         }) : <p> No pipelines </p>}
       </section>

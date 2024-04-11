@@ -20,6 +20,7 @@ import EnterEmail from '../pages/passwordRecovery/EnterEmail.jsx';
 import EmailSent from '../pages/passwordRecovery/EmailSent.jsx';
 import SetPassword from "../pages/passwordRecovery/SetPassword.jsx";
 import NewPasswordCreated from "../pages/passwordRecovery/NewPasswordCreated.jsx"
+import VerifyLogin from '../pages/signUp-Login/VerifyLogin.jsx';
 
 const MyRoutes = () => {
   return (
@@ -33,6 +34,7 @@ const MyRoutes = () => {
             <Route path="passrecovery/enteremail" element={<EnterEmail />}></Route>
             <Route path="passrecovery/emailsent" element={<EmailSent />}></Route>
             <Route path="passrecovery/enternewpass" element={<SetPassword />}></Route>
+            <Route path="verifyLogin" element={<VerifyLogin />}></Route>
         </Routes>
     </Router>
   )

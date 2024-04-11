@@ -6,6 +6,7 @@ import WelcomePage from "./pages/homePage/WelcomePage.jsx";
 import Error from "./components/Error.jsx";
 import PipeAmount from "./components/PipeAmount.jsx";
 import PipelineUnit from "./components/PipeUnit.jsx";
+import VerifyLogin from "./pages/signUp-Login/VerifyLogin.jsx";
 
 function App() {
   return (
@@ -20,13 +21,14 @@ function App() {
       {/* <NewPasswordCreated /> */}
       {/* <Pipe /> */}
       {/* <Test /> */}
-      {/* <MyRoutes /> */}
+      <MyRoutes />
       {/* <WelcomePage />  */}
       {/* <PipeAmount /> */}
       {/* <PipelineUnit /> */}
-      <WelcomePage />
+      {/* <WelcomePage /> */}
       {/* <Loading /> */}
-      <WelcScreen />
+      {/* <WelcScreen /> */}
+      {/* <VerifyLogin /> */}
     </div>
   );
 }

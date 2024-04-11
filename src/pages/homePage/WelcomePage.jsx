@@ -5,6 +5,7 @@ import Transaction from "../../components/Transaction.jsx";
 import { useUser } from "../../MainContext.jsx";
 import HeadText from "../../components/HeadText.jsx";
 import useRequest from "../../modules/useRequest.jsx";
+import Navbar from "../../components/Navbar.jsx";
 
 const WelcomePage = () => {
   const { auth } = useUser();
@@ -67,6 +68,7 @@ const WelcomePage = () => {
       <section className="mt-8 bg-white rounded-2xl pl-8 pr-8">
         <Transaction />
       </section>
+      <Navbar />
     </div>
   );
 };

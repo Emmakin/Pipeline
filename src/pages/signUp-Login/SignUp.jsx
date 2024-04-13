@@ -108,6 +108,7 @@ const SignUp = () => {
     return res;
   };
 
+
   return (
     <div>
       {loading && <Loading />}

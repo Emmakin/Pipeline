@@ -21,7 +21,7 @@ const EmailSent = () => {
         // window.open("mailto:")
         navigate("/login")
         }}>
-        Check Email
+        Continue
       </MainButton>
     </div>
   );

@@ -26,7 +26,7 @@ const MyRoutes = () => {
   return (
     <Router>
         <Routes>
-          <Route path='/' element={<EntryPage />}></Route>
+            <Route path='/' element={<Login />}></Route>
             <Route path='login' element={<Login />}></Route>
             <Route path='signup' element={<SignUp />}></Route>
             <Route path='verifyEmail' element={<EmailVeriSent />}></Route>

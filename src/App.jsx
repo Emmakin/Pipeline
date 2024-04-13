@@ -14,14 +14,14 @@ function App() {
       {/* <SignUp /> */}
       {/* <EntryPage /> */}
       {/* <EmailVeriSent /> */}
-      {/* <Login /> */}
+      <Login />
       {/* <EnterEmail /> */}
       {/* <EmailSent /> */}
       {/* <SetPassword /> */}
       {/* <NewPasswordCreated /> */}
       {/* <Pipe /> */}
       {/* <Test /> */}
-      <MyRoutes />
+     {/* MyRoutes /> */}
       {/* <WelcomePage />  */}
       {/* <PipeAmount /> */}
       {/* <PipelineUnit /> */}

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Verified from "../../assets/verified.svg"
 import Login from './Login';
 import { useLocation } from 'react-router-dom';
 
@@ -38,8 +39,9 @@ const VerifyLogin = () => {
          <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-light text-blue-900">
-            Verification Successful!
+          <h2 className="mt-6 pl-5 text-cente gap-2 flex text-2 font-light text-black">
+            <span>Verification Successful! </span>
+            <img src={Verified} alt='verified logo' />
           </h2>
           <Login />
           {/* <button
